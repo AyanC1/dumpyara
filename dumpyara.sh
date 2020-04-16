@@ -8,7 +8,7 @@ mkdir -p $PROJECT_DIR/input $PROJECT_DIR/working
 # GitHub token
 if [[ -n $2 ]]; then
     GIT_OAUTH_TOKEN=$2
-elif [[ -f ".githubtoken" ]]; then
+elif [[ -f "~/.githubtoken" ]]; then
     GIT_OAUTH_TOKEN=$(cat .githubtoken)
 else
     echo "GitHub token not found. Dumping just locally..."
@@ -179,7 +179,7 @@ else
     exit 1
 fi
 # Telegram channel
-TG_TOKEN=$(cat $PROJECT_DIR/.tgtoken)
+TG_TOKEN=$(cat ~/.tgtoken)
 if [ ! -z "$TG_TOKEN" ]; then
     CHAT_ID="@android_dumps"
     commit_head=$(git log --format=format:%H | head -n 1)
