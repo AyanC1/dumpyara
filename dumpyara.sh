@@ -8,8 +8,8 @@ mkdir -p $PROJECT_DIR/input $PROJECT_DIR/working
 # GitHub token
 if [[ -n $2 ]]; then
     GIT_OAUTH_TOKEN=$2
-elif [[ -f "~/.githubtoken" ]]; then
-    GIT_OAUTH_TOKEN=$(cat .githubtoken)
+elif [[ -f ~/.githubtoken ]]; then
+    GIT_OAUTH_TOKEN=$(cat ~/.githubtoken)
 else
     echo "GitHub token not found. Dumping just locally..."
 fi
@@ -23,7 +23,7 @@ else
     URL=$( realpath "$1" )
 fi
 
-ORG=AndroidDumps #your GitHub org name
+ORG=AyanC1 #your GitHub org name
 FILE=${URL##*/}
 EXTENSION=${URL##*.}
 UNZIP_DIR=${FILE/.$EXTENSION/}
@@ -146,10 +146,10 @@ if [[ -n $GIT_OAUTH_TOKEN ]] ; then
     curl --silent --fail "https://raw.githubusercontent.com/$ORG/$repo/$branch/all_files.txt" 2>/dev/null && echo "Firmware already dumped!" && exit 1
     git init
     if [ -z "$(git config --get user.email)" ]; then
-        git config user.email AndroidDumps@github.com
+        git config user.email AyanC1@github.com
     fi
     if [ -z "$(git config --get user.name)" ]; then
-        git config user.name AndroidDumps
+        git config user.name AyanC1
     fi
     git checkout -b $branch
     find -size +97M -printf '%P\n' -o -name *sensetime* -printf '%P\n' -o -name *.lic -printf '%P\n' > .gitignore
